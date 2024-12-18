@@ -1,0 +1,139 @@
+.container-footer {
+  background-color: var(--background-color);
+}
+.wrapper-footer {
+  margin: 0 214px;
+  padding: 16px 24px;
+}
+
+.wrapper-footer-content {
+  padding-top: 16px;
+  padding-left: 16px;
+}
+
+.wrapper-footer-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #2f2f2f;
+}
+
+.wrapper-footer-ul {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.item-li {
+  color: var(--color-text);
+  font-weight: 400;
+  font-size: 0.9375rem;
+  line-height: 1.43;
+  border-right: 1px solid rgba(255, 255, 255, 0.12);
+  padding-right: 7px;
+  &:last-child {
+    border-right: 1px solid transparent;
+  }
+  &:hover {
+    color: var(--color-green);
+    cursor: pointer;
+    transition: color 0.2s linear;
+  }
+}
+
+.wrapper-footer-right {
+  display: flex;
+  align-items: center;
+}
+
+.title {
+  color: var(--color-text);
+  font-weight: 400;
+  font-size: 0.9375rem;
+  line-height: 1.43;
+}
+
+.box-img {
+  height: 38.1px;
+  display: flex;
+  justify-content: end;
+  margin-left: 8px;
+}
+
+.img {
+  height: 30px;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+.wrapper-footer-box-2 {
+  padding-bottom: 16px;
+  border-bottom: 1px solid #2f2f2f;
+}
+
+.box-icon {
+  display: flex;
+  margin-top: 16px;
+}
+
+.ic-item {
+  width: 33.81px;
+}
+
+.icon {
+  color: var(--color-text);
+  width: 25.71px;
+  cursor: pointer;
+}
+
+.box-text {
+  display: flex;
+}
+
+.title-text {
+  margin: 0px;
+  font-family: Lato, sans-serif;
+  font-weight: 400;
+  font-size: 0.9375rem;
+  line-height: 1.43;
+  color: var(--color-text);
+}
+
+.title-margin {
+  margin-top: 16px;
+}
+
+.wrapper-footer-box-3 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16px 0;
+}
+
+.box-img-sale {
+  width: 98px;
+  height: 40px;
+}
+.img-sale {
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.box-p-footer {
+  color: rgba(255, 255, 255, 0.7);
+  margin-top: 16px;
+  font-weight: 400;
+  font-size: 0.9375rem;
+  line-height: 1.43;
+}
+.a {
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  &:hover {
+    color: var(--color-green);
+    transition: color 0.2s linear;
+  }
+}

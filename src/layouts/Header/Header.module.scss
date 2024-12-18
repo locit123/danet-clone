@@ -1,0 +1,140 @@
+.wrapper-header {
+  height: 56px;
+  width: 100vw;
+  background-color: var(--background-color);
+  padding-right: 24px;
+  padding-left: 24px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+}
+.header {
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header-left {
+  display: flex;
+  gap: 20px;
+}
+.parent-img {
+  width: 108.5px;
+  height: 28px;
+}
+.img-logo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.box-ul {
+  display: flex;
+  gap: 20px;
+}
+
+.item-li {
+  color: var(--color-text);
+  list-style: none;
+  margin: 0px;
+  font-family: Lato, sans-serif;
+  font-size: 1.07143rem;
+  line-height: 1.5;
+  text-decoration: none;
+  &:hover {
+    color: var(--color-green);
+    cursor: pointer;
+    transition: color 0.3s ease-in-out;
+  }
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+}
+
+.header-right-notify {
+  padding: 8px 20px 8px 8px;
+}
+
+.ic-size {
+  width: 25.71px;
+  height: 25.71px;
+  color: var(--color-text);
+}
+
+.bt-register {
+  padding: 6px 16px;
+  background-color: rgb(138, 191, 64);
+  border-radius: 4px;
+}
+
+.text-register {
+  font-size: 0.9375rem;
+  color: var(--color-text);
+  font-weight: 500;
+  line-height: 1.75;
+}
+
+.item-search {
+  background-color: transparent;
+  margin-left: 8px;
+  width: 88.43px;
+  // width: 388.43px;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  &:hover {
+    .input {
+      background-color: #3b3b3b;
+      cursor: pointer;
+      transition: background-color 0.2s linear;
+      border-top-right-radius: 4px;
+      border-bottom-right-radius: 4px;
+    }
+  }
+
+  &:hover {
+    .box-ic {
+      background-color: #3b3b3b;
+      cursor: pointer;
+      transition: background-color 0.2s linear;
+      border-top-left-radius: 4px;
+      border-bottom-left-radius: 4px;
+    }
+  }
+}
+.box-ic {
+  padding: 8px 8px 8px 12px;
+  height: 100%;
+}
+
+.ic-input {
+  color: var(--color-text);
+}
+.box-input {
+  flex: 1;
+  border-radius: 4px;
+}
+
+.input {
+  border: none;
+  outline: none;
+  background-color: var(--background-color);
+  width: 100%;
+  height: 100%;
+}
+
+.item-user {
+  padding: 8px;
+  border-radius: 50%;
+  display: flex;
+  &:hover {
+    background-color: #3b3b3b;
+    cursor: pointer;
+    transition: background-color 0.2s linear;
+  }
+}

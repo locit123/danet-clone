@@ -1,0 +1,104 @@
+{
+    "results": [
+        {
+            "id": 10,
+            "name": "DANET TUYỂN CHỌN",
+            "description": "",
+            "template": "default",
+            "shuffle": 1,
+            "is_infinite_loop": 1,
+            "ads": []
+        },
+        {
+            "id": 241,
+            "name": "TOP 10 XEM NHIỀU NHẤT",
+            "description": "",
+            "template": "top10",
+            "is_infinite_loop": 0,
+            "ads": []
+        },
+        {
+            "id": 269,
+            "name": "SHOW HAY THỊNH HÀNH",
+            "description": "",
+            "template": "default",
+            "is_infinite_loop": 0,
+            "ads": [
+                {
+                    "id": "4",
+                    "type": "PLAYLIST_PROMOTION_BANNER",
+                    "parameters": {
+                        "url": "https://dshorts.vn/movie?movieId=1731467305&movieTitle=N%C6%B0%E1%BB%9Bc%20M%E1%BA%AFt%20T%C3%ACnh%20Y%C3%AAu",
+                        "target": "default",
+                        "nofollow": "1",
+                        "file_path": "https://static.sandboxes.xyz/images/promotions/short-2024-800x250.jpg"
+                    },
+                    "is_skippable": 0
+                }
+            ]
+        },
+        {
+            "id": 85,
+            "name": "PHIM TRUNG HOA 2024",
+            "description": "",
+            "template": "default",
+            "is_infinite_loop": 0,
+            "ads": []
+        },
+        {
+            "id": 97,
+            "name": "PHIM BỘ HAY NHẤT 2024",
+            "description": "",
+            "template": "default",
+            "shuffle": 1,
+            "is_infinite_loop": 0,
+            "ads": []
+        },
+        {
+            "id": 258,
+            "name": "MỌT PHIM HOA NGỮ",
+            "description": null,
+            "template": "default",
+            "shuffle": 1,
+            "is_infinite_loop": 1,
+            "ads": []
+        },
+        {
+            "id": 52,
+            "name": "ANIME MỚI HÀNG TUẦN",
+            "description": "",
+            "template": "default",
+            "shuffle": 1,
+            "is_infinite_loop": 0,
+            "ads": []
+        },
+        {
+            "id": 92,
+            "name": "THÍCH XEM PHIM",
+            "description": "",
+            "template": "default",
+            "shuffle": 1,
+            "is_infinite_loop": 0,
+            "ads": []
+        },
+        {
+            "id": 84,
+            "name": "DANET AND CHILL",
+            "description": null,
+            "template": "default",
+            "shuffle": 1,
+            "is_infinite_loop": 0,
+            "ads": []
+        },
+        {
+            "id": 26,
+            "name": "PHIM THUYẾT MINH HOT NHẤT CHÂU Á",
+            "description": null,
+            "template": "default",
+            "shuffle": 1,
+            "is_infinite_loop": 0,
+            "ads": []
+        }
+    ],
+    "num_found": 30
+}

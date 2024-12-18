@@ -12,4 +12,5 @@ body {
 :root {
   --background-color: #121212;
   --color-text: #fff;
+  --color-green: rgb(138, 191, 64);
 }
