@@ -1,6 +1,15 @@
 import { IMovie } from "@models/Movie.models";
 import { IMovieBannerSlide } from "@models/MovieBannerSlide.models";
-
+import rank from "@assets/images/rank-1.png";
+import rank2 from "@assets/images/rank-2.png";
+import rank3 from "@assets/images/rank-3.png";
+import rank4 from "@assets/images/rank-4.png";
+import rank5 from "@assets/images/rank-5.png";
+import rank6 from "@assets/images/rank-6.png";
+import rank7 from "@assets/images/rank-7.png";
+import rank8 from "@assets/images/rank-8.png";
+import rank9 from "@assets/images/rank-9.png";
+import rank10 from "@assets/images/rank-10.png";
 export const DATA_SLIDE: IMovieBannerSlide[] = [
   {
     id: 359,
@@ -29,6 +38,7 @@ export const DATA_SLIDE: IMovieBannerSlide[] = [
       total_episodes: 31,
       count_episodes: 0,
       duration: 45,
+
       poster:
         "https://images.sandboxes.xyz/images/src/c45/2e4/6ee59cfa32192e2153851a8807eb4062.jpg",
       banner:
@@ -318,6 +328,7 @@ export const DATA: IMovie[] = [
     total_episodes: 15,
     count_episodes: 0,
     duration: 45,
+    rank: rank,
     poster:
       "https://images.sandboxes.xyz/images/thumbs/480x720/3d6/f4/7a3742e7bc2e2fad1347f1ff5963a7a0.jpg",
     banner:
@@ -345,6 +356,8 @@ export const DATA: IMovie[] = [
     total_episodes: 2,
     count_episodes: 0,
     duration: null,
+    rank: rank2,
+
     poster:
       "https://images.sandboxes.xyz/images/thumbs/480x720/9e5/7d5/20745cb1224f356001c8015ff14504ca.jpg",
     banner:
@@ -365,6 +378,8 @@ export const DATA: IMovie[] = [
     summary:
       "20 năm trước, một bà mẹ đẻ mướn cho Chủ tịch của tập đoàn kinh doanh bất động sản lớn sinh được 2 đứa con sinh đôi. Quá đau lòng và ko nở rời xa 2 đứa con, bà quyết định chỉ để lại một đứa con và tung đồng xu để quyết định vận mệnh cho 2 cô gái. 20 năm sau, cô bé lớn lên trong nhung lụa , tính tình lương thiện hiền lành, là một thiên kin tiểu thư đúng nghĩa, tên là Trang Phi Dương, cha mẹ nuôi của cô qua đời khi cô mới 20 tuổi, để lại một tập đoàn lớn trong tay một cô gái trẻ thông minh, tài giỏi, mang theo bí mật về thân phận thật của cô.",
     imdb: null,
+    rank: rank3,
+
     quality: "HD",
     qualifier: "T16",
     release_year: 2004,
@@ -396,6 +411,7 @@ export const DATA: IMovie[] = [
     summary:
       'Định Mệnh Anh Yêu Em xoay quanh chuyện tình yêu giữa Trần Hân Di và Kỷ Tồn Hy với những tình tiết dở khóc dở cười nhưng cũng không kém phần cảm động. Nếu như cô nàng Hân Di là một cô gái trong sáng, chất phát và bình dị thì anh chàng Kỷ Tồn Hy lại là một chàng công tử đào hoa. Từ nhỏ Hân Di đã rất sợ người khác không thích mình nên lúc nào cũng cố gắng đáp ứng yêu cầu của mọi người và được đặt biệt danh "tờ giấy dán" (Sticky Note Girl). Hân Di coi trọng tình cảm đến khờ khạo, cô là người có cá tính nhưng lại thường xuyên yếu mềm trước những lời mật ngọt.',
     imdb: null,
+    rank: rank4,
     quality: "HD",
     qualifier: "T16",
     release_year: 2008,
@@ -432,6 +448,7 @@ export const DATA: IMovie[] = [
     release_year: 2019,
     orientation: "0",
     total_episodes: 16,
+    rank: rank5,
     count_episodes: 16,
     duration: 60,
     poster:
@@ -460,6 +477,7 @@ export const DATA: IMovie[] = [
     imdb: null,
     quality: "HD",
     qualifier: "T13",
+    rank: rank6,
     release_year: 2019,
     orientation: "0",
     total_episodes: 43,
@@ -490,6 +508,7 @@ export const DATA: IMovie[] = [
       'Avengers Social Club một nơi dành cho những con người bị đối xử bội bạc trong hôn nhân. Những người phụ nữ trong phim, xinh đẹp có, thành đạt có, đảm đang cũng đủ cả nhưng mỗi người lại vướng vào những bi kịch riêng với chồng mình, nào là bị ngoại tình, bạo hành, lừa dối. Chính vì thế mà dù ở những tầng lớp khác nhau, các "quý bà báo thù" vẫn có một niềm đồng cảm sâu sắc để hội ngộ tại Câu Lạc Bộ Báo Thù. Kế hoạch trả thù của quý bà Kim Jung Hye cùng những thành viên khác của câu lạc bộ chắc chắn sẽ khiến cánh mày râu thấm thía sâu sắc bài học về cơn thịnh nộ của phái đẹp.',
     imdb: null,
     quality: "HD",
+    rank: rank7,
     qualifier: "T16",
     release_year: 2017,
     orientation: "0",
@@ -516,6 +535,7 @@ export const DATA: IMovie[] = [
     summary:
       "Phim kể về câu chuyện tình yêu giữa Viên Soái (La Vân Hi) - một tổng tài bá đạo với tính cách ngang bướng, độc miệng và Giang Quân (Bạch Lộc) - cô gái cá tính trong công việc và yêu kiều trong cuộc sống. Viên Soái thầm yêu Giang Quân nhiều năm nhưng không dám thổ lộ tình cảm. Đến khi Giang Quân có người yêu, anh lại tìm cách phá hoại, đoạt lại người mình yêu. Liệu sau những hiểu lầm và đau thương, cả hai còn có thể đến với nhau?",
     imdb: null,
+    rank: rank8,
     quality: "HD",
     qualifier: "T13",
     release_year: 2020,
@@ -554,6 +574,7 @@ export const DATA: IMovie[] = [
     total_episodes: 16,
     count_episodes: 17,
     duration: 60,
+    rank: rank9,
     poster:
       "https://images.sandboxes.xyz/images/thumbs/480x720/e6b/b8c/49819dc868177efd42cb140646755678.jpg",
     banner:
@@ -579,6 +600,8 @@ export const DATA: IMovie[] = [
       "Một cô gái luống tuổi có tính mê tín dị đoan tên Shim Bo Nui. Một ngày nọ, cô nghe thấy từ một thầy bói rằng nếu cô ấy không qua đêm với trai tân sinh năm 1986 cầm tinh con Hổ thì cô sẽ chết. Sợ hãi, cô đã liên tục tìm kiếm người sinh năm 1986, một người nào đó phù hợp với những tiêu chí như thầy bói đã phán.",
     imdb: null,
     quality: "HD",
+    rank: rank10,
+
     qualifier: "T13",
     release_year: 2016,
     orientation: "0",

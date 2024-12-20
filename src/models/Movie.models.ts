@@ -20,4 +20,5 @@ export interface IMovie {
   poster: string;
   banner: string;
   movie_genres?: IMovieGenres[];
+  rank?: string;
 }

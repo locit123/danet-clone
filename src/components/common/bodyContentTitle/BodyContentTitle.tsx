@@ -1,9 +1,6 @@
 import React, { useRef, useState } from "react";
 
 import { DATA } from "@utils/dataMovieSlide";
-import MovieMetaDataShare from "../movieMetaDataShare/MovieMetaDataShare";
-import PlayIcon from "@assets/playicon.svg?react";
-import HelpIcon from "@assets/helpicon.svg?react";
 import classNames from "classnames/bind";
 import styles from "./BodyContentTitle.module.scss";
 import { FcNext, FcPrevious } from "react-icons/fc";
@@ -11,7 +8,7 @@ import {
   handleClickNext,
   handleClickPrev,
 } from "@utils/generalFunction/GeneralFunction";
-import { IMovie } from "@models/Movie.models";
+import RenderHoverMovie from "../renderHoverMovie/RenderHoverMovie";
 const cx = classNames.bind(styles);
 
 const BodyContentTitle = () => {
@@ -46,28 +43,6 @@ const BodyContentTitle = () => {
     }, 700);
   };
 
-  const renderHover = (idx: number, movie: IMovie) => {
-    if (isHoverItem && indexItem === idx) {
-      return (
-        <div className={cx("box-hidden")}>
-          <div className={cx("box-hidden-text")}>
-            <h6>Hành Trình Kỳ Thú</h6>
-            <MovieMetaDataShare {...movie} />
-          </div>
-          <div className={cx("box-bt")}>
-            <div className={cx("bt")}>
-              <PlayIcon className={cx("play-icon")} />
-              <p className={cx("bt-text")}>Xem ngay</p>
-            </div>
-            <div className={cx("bt2")}>
-              <HelpIcon className={cx("help-icon")} />
-              <p className={cx("bt-text")}>Chi tiết</p>
-            </div>
-          </div>
-        </div>
-      );
-    }
-  };
   return (
     <div className={cx("wrapper-body-content")}>
       <div
@@ -76,23 +51,16 @@ const BodyContentTitle = () => {
       >
         {DATA.map((movie, idx) => {
           return (
-            <div
-              className={cx("box-movie", idx === indexItem ? "hoverItem" : "")}
-              key={movie.uid}
-              onMouseEnter={(e) => handleMouseEnter(e, idx)}
-              onMouseLeave={handleMouseLeave}
-            >
-              <div className={cx("box-movie-item")}>
-                <img
-                  src={movie.banner}
-                  alt={movie.uid}
-                  className={cx("img", {
-                    isHoverItem: indexItem === idx,
-                  })}
-                />
-              </div>
-              {renderHover(idx, movie)}
-            </div>
+            <>
+              {RenderHoverMovie({
+                handleMouseEnter,
+                handleMouseLeave,
+                idx,
+                indexItem,
+                isHoverItem,
+                movie,
+              })}
+            </>
           );
         })}
       </div>
@@ -108,6 +76,7 @@ const BodyContentTitle = () => {
                   containerMovieRef,
                   setNextScroll,
                   nextScroll,
+                  step: 3,
                 })
               }
             />
@@ -128,6 +97,7 @@ const BodyContentTitle = () => {
                   setMaxScroll,
                   setNextScroll,
                   nextScroll,
+                  step: 3,
                 })
               }
             />
