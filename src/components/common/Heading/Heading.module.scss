@@ -1,0 +1,45 @@
+.box-title {
+  display: flex;
+  align-items: center;
+  &:hover {
+    cursor: pointer;
+    .link {
+      margin-left: 15px;
+      visibility: visible;
+      opacity: 1;
+      transition: margin-left 0.3s linear, visibility 0.3s linear,
+        opacity 0.3s linear;
+    }
+  }
+}
+
+.title {
+  color: var(--color-text);
+  line-height: 1.43;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.link {
+  text-decoration: none;
+  margin-left: 0;
+  visibility: hidden;
+  opacity: 0;
+  p {
+    color: var(--color-text);
+    font-size: 1rem;
+    line-height: 1.43;
+    font-weight: 600;
+  }
+}
+@media (min-width: 0px) {
+  .box-title {
+    margin-top: 24px;
+  }
+}
+
+@media (min-width: 960px) {
+  .box-title {
+    margin-top: 40px;
+  }
+}

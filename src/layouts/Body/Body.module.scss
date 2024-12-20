@@ -1,9 +1,14 @@
 .wrapper-body {
   background-color: var(--background-color);
-  padding-bottom: 20px;
 }
 
 .body-content {
+  // border: 1px solid red;
+}
+
+.body-overflow {
+  overflow: hidden !important;
   padding-right: 3.02083vw;
   padding-left: 3.02083vw;
+  height: auto;
 }

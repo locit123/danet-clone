@@ -10,7 +10,6 @@ const Home = () => {
       <Header />
       <div className={cx("content-body")}>
         <Body />
-
         <Footer />
       </div>
     </div>

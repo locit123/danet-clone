@@ -19,5 +19,5 @@ export interface IMovie {
   duration: number | null;
   poster: string;
   banner: string;
-  movie_genres: IMovieGenres[];
+  movie_genres?: IMovieGenres[];
 }

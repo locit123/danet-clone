@@ -3,7 +3,7 @@ import classNames from "classnames/bind";
 import styles from "./BodySlide.module.scss";
 const cx = classNames.bind(styles);
 import { FcNext, FcPrevious } from "react-icons/fc";
-import { DATA } from "@utils/dataMovie";
+import { DATA_SLIDE } from "@utils/dataMovieSlide";
 import { useEffect, useRef, useState } from "react";
 import BannerSlide from "./BannerSlide";
 
@@ -14,7 +14,7 @@ const BodySlide = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      const nextIndex = (indexItem + 1) % DATA.length;
+      const nextIndex = (indexItem + 1) % DATA_SLIDE.length;
       setIndexItem(nextIndex);
       if (nextIndex === 0) {
         scrollStart();
@@ -45,7 +45,9 @@ const BodySlide = () => {
       const scrollWidth = container.scrollWidth;
       const maxScroll = scrollWidth - clientWidth;
       const scrollLeft = container.scrollLeft;
-      const next = Math.floor((scrollWidth / DATA.length) * visibleItemsCount);
+      const next = Math.floor(
+        (scrollWidth / DATA_SLIDE.length) * visibleItemsCount
+      );
       container.scrollTo({
         behavior: "smooth",
         left: Math.min(scrollLeft + next, maxScroll),
@@ -95,13 +97,13 @@ const BodySlide = () => {
   return (
     <div className={cx("wrapper-body-slide")}>
       <div>
-        <BannerSlide {...DATA[indexItem]} />
+        <BannerSlide {...DATA_SLIDE[indexItem]} />
         <div className={cx("wrapper-body-slide-bottom")}>
           <div className={cx("slide-show-items")} ref={divContainerRef}>
-            {DATA.map((movie, index) => {
+            {DATA_SLIDE.map((movie, index) => {
               return (
                 <div
-                  key={movie.uid}
+                  key={movie.id}
                   className={cx("slide-show-item")}
                   onClick={(e) => handleClickIndex(e, index)}
                 >
@@ -112,8 +114,8 @@ const BodySlide = () => {
                           ? "3px solid rgb(138, 191, 64)"
                           : "",
                     }}
-                    src={movie.banner}
-                    alt={`movie${movie.uid}`}
+                    src={movie.horizontal_banner}
+                    alt={`movie${movie.id}`}
                     className={cx("img-slide")}
                     loading="lazy"
                     draggable="false"

@@ -1,0 +1,15 @@
+.body-content-th {
+  position: relative;
+  padding-bottom: 1px;
+}
+
+//
+.box-img-banner {
+  position: relative;
+  aspect-ratio: 20/3;
+  padding: 16px 0;
+  img {
+    width: 100%;
+    object-fit: cover;
+  }
+}
