@@ -81,7 +81,6 @@ const BodyContentTrending = () => {
       {nextScroll !== 0 && (
         <div className={cx("prev-movie")}>
           <FcPrevious
-            color="red"
             size={50}
             className={cx("ic-prev")}
             onClick={() =>
@@ -98,7 +97,6 @@ const BodyContentTrending = () => {
       {nextScroll < maxScroll && (
         <div className={cx("next-movie")}>
           <FcNext
-            color="red"
             size={50}
             className={cx("ic-next")}
             onClick={() =>
