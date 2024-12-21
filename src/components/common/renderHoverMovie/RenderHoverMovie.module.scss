@@ -7,7 +7,6 @@
 .box-movie.hoverItem {
   transform: scale(1.4);
   z-index: 10;
-
   transform-origin: 35% 99%;
   &:last-child {
     transform-origin: 65% 99%;

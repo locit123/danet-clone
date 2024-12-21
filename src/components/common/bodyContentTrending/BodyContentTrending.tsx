@@ -73,6 +73,7 @@ const BodyContentTrending = () => {
                 indexItem,
                 isHoverItem: isHoverItem,
                 className: cx(indexItem === idx ? "hover-movie-2" : ""),
+                isTrigger: false,
               })}
           </div>
         ))}

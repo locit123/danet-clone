@@ -59,6 +59,7 @@ const BodyContentTitle = () => {
                 indexItem,
                 isHoverItem,
                 movie,
+                isTrigger: true,
               })}
             </>
           );

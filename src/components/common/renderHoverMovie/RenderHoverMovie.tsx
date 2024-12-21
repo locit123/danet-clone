@@ -18,6 +18,7 @@ interface IRenderHoverMovieProps {
   handleMouseLeave: () => void;
   isHoverItem: boolean;
   className?: string;
+  isTrigger: boolean;
 }
 
 const RenderHoverMovie = ({
@@ -28,10 +29,11 @@ const RenderHoverMovie = ({
   movie,
   isHoverItem = false,
   className,
+  isTrigger = false,
 }: IRenderHoverMovieProps) => {
   const classes = cx(
     "box-movie",
-    idx === indexItem ? "hoverItem" : "",
+    { hoverItem: isTrigger && idx === indexItem },
     className ? { [className]: true } : undefined
   );
   return (
