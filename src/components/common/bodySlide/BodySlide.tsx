@@ -85,8 +85,6 @@ const BodySlide = () => {
       const widthImage = container.children[0].clientWidth;
       const scrollLeft = container.scrollLeft;
       const prevScrollLeft = Math.max(scrollLeft - widthImage - 10, 0);
-      console.log(scrollLeft);
-
       container.scrollTo({
         behavior: "smooth",
         left: prevScrollLeft,

@@ -1,8 +1,7 @@
-import { Heading } from "@components/common";
+import { BodyContentMovieVertical2, Heading } from "@components/common";
 import React from "react";
 import classNames from "classnames/bind";
 import styles from "./BodyMovie4.module.scss";
-import BodyContentMovieVertical2 from "@components/common/bodyContentMovieVertical2/BodyContentMovieVertical2";
 const cx = classNames.bind(styles);
 const BodyMovie4 = () => {
   return (

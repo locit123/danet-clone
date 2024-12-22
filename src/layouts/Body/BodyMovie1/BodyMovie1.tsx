@@ -1,7 +1,6 @@
-import { Heading } from "@components/common";
+import { BodyContentTitle, Heading } from "@components/common";
 import classNames from "classnames/bind";
 import styles from "./BodyMovie1.module.scss";
-import BodyContentTitle from "@components/common/bodyContentTitle/BodyContentTitle";
 
 import Img from "@assets/images/anhMovie.jpg";
 

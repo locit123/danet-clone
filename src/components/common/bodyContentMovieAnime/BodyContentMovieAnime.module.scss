@@ -1,0 +1,153 @@
+.wrapper-content-movie-anime {
+  overflow: initial;
+  position: relative;
+  height: 187.04px;
+}
+
+.items-movie-anime {
+  position: relative;
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.3s linear;
+}
+
+.item-anime {
+  flex: 0 0 calc(100vw / 4.5 - 10px);
+  height: 100%;
+  transform: scale(1);
+  transition: transform 0.2s ease-in-out, z-index 0.2s ease-in-out;
+}
+.item-anime.hoverItem {
+  transform: scale(1.5);
+  z-index: 10;
+  transform-origin: center 100%;
+
+  &:first-child {
+    transform-origin: 28% 100%;
+  }
+  &:last-child {
+    transform-origin: 75% 100%;
+  }
+}
+
+.box-img-anime {
+  position: relative;
+  padding-bottom: 56.25%;
+  width: 100%;
+  height: 100%;
+}
+
+.img-anime {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 4px;
+  cursor: pointer;
+  inset: 0;
+}
+.img-anime.hoverImage {
+  transition: border-bottom-left-radius 0.2s ease-in-out,
+    border-bottom-right-radius 0.2s ease-in-out;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.box-hidden {
+  width: 100%;
+  padding-left: 30px;
+  background-color: rgb(18, 18, 18);
+}
+
+.box-p-title {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.title-p {
+  font-weight: 400;
+  font-size: 1.07143rem;
+  line-height: 1.75;
+  color: var(--color-text);
+}
+
+.box-bt {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.box-icon-play {
+  border: 1px solid var(--color-green);
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 3px 9px;
+}
+
+.ic-play {
+  color: var(--color-green);
+}
+.box-icon-help {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  border: 1px solid #29b6f6;
+  padding: 3px 9px;
+}
+
+.ic {
+  width: 18px;
+  height: 18px;
+}
+
+.ic-help {
+  color: #29b6f6;
+}
+
+.bt-title {
+  margin: 0px;
+  font-family: Lato, sans-serif;
+  font-weight: 400;
+  font-size: 0.9375rem;
+  line-height: 1.43;
+  color: var(--color-green);
+}
+
+.bt-detail {
+  color: #29b6f6;
+}
+
+.prev-movie {
+  position: absolute;
+  top: 0;
+  left: -3vw;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 5vw;
+  background-image: linear-gradient(90deg, #121212, transparent);
+  z-index: 10;
+  cursor: pointer;
+}
+
+.next-movie {
+  position: absolute;
+  top: 0;
+  right: -3vw;
+  height: 100%;
+  width: 5vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: linear-gradient(90deg, transparent, #121212);
+  z-index: 10;
+  cursor: pointer;
+}

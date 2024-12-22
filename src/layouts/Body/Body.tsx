@@ -5,6 +5,7 @@ import BodyMovie1 from "./BodyMovie1/BodyMovie1";
 import BodyMovie2 from "./BodyMovie2/BodyMovie2";
 import BodyMovie3 from "./BodyMovie3/BodyMovie3";
 import BodyMovie4 from "./BodyMovie4/BodyMovie4";
+import BodyMovie5 from "./BodyMovie5/BodyMovie5";
 const cx = classNames.bind(styles);
 const Body = () => {
   return (
@@ -16,6 +17,7 @@ const Body = () => {
           <BodyMovie2 />
           <BodyMovie3 />
           <BodyMovie4 />
+          <BodyMovie5 />
         </div>
       </div>
     </div>

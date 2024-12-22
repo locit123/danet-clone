@@ -1,8 +1,7 @@
 import React from "react";
 import styles from "./BodyMovie2.module.scss";
 import classNames from "classnames/bind";
-import { Heading } from "@components/common";
-import BodyContentTrending from "@components/common/bodyContentTrending/BodyContentTrending";
+import { BodyContentTrending, Heading } from "@components/common";
 const cx = classNames.bind(styles);
 const BodyMovie2 = () => {
   return (
