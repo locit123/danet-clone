@@ -1,18 +1,32 @@
-import React, { useRef, useState } from "react";
+import React, { useCallback, useRef, useState } from "react";
 import classNames from "classnames/bind";
 import styles from "./BodyContentMovieVertical2.module.scss";
-import { FcNext, FcPrevious } from "react-icons/fc";
 import { DATA } from "@utils/dataMovieSlide";
 import PlayIcon from "@assets/playicon.svg?react";
 import {
   handleClickNext,
   handleClickPrev,
 } from "@utils/generalFunction/GeneralFunction";
+import NavigationComponent from "@components/NavigationComponent/NavigationComponent";
 const cx = classNames.bind(styles);
-const BodyContentMovieVertical2 = () => {
+const BodyContentMovieVertical2 = React.memo(() => {
   const containerMovieRef = useRef<HTMLDivElement>(null);
   const [nextScroll, setNextScroll] = useState(0);
   const [maxScroll, setMaxScroll] = useState(1);
+
+  const handleScrollPrev = useCallback(() => {
+    handleClickPrev({ containerMovieRef, nextScroll, setNextScroll, step: 3 });
+  }, [nextScroll]);
+
+  const handleScrollNext = useCallback(() => {
+    handleClickNext({
+      containerMovieRef,
+      nextScroll,
+      setNextScroll,
+      step: 3,
+      setMaxScroll,
+    });
+  }, [nextScroll]);
   return (
     <div className={cx("wrapper-body-content-movie-vertical")}>
       <div className={cx("items-movie-vertical")} ref={containerMovieRef}>
@@ -38,39 +52,14 @@ const BodyContentMovieVertical2 = () => {
           );
         })}
       </div>
-      {nextScroll !== 0 && (
-        <div className={cx("prev-movie")}>
-          <FcPrevious
-            size={50}
-            onClick={() =>
-              handleClickPrev({
-                containerMovieRef,
-                nextScroll,
-                setNextScroll,
-                step: 3,
-              })
-            }
-          />
-        </div>
-      )}
-      {nextScroll < maxScroll && (
-        <div className={cx("next-movie")}>
-          <FcNext
-            size={50}
-            onClick={() =>
-              handleClickNext({
-                containerMovieRef,
-                nextScroll,
-                setMaxScroll,
-                setNextScroll,
-                step: 3,
-              })
-            }
-          />
-        </div>
-      )}
+      <NavigationComponent
+        handleScrollNext={handleScrollNext}
+        handleScrollPrev={handleScrollPrev}
+        maxScroll={maxScroll}
+        nextScroll={nextScroll}
+      />
     </div>
   );
-};
+});
 
 export default BodyContentMovieVertical2;

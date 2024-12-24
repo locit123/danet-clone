@@ -1,112 +1,114 @@
-import React, { useRef, useState } from "react";
+import React, { useCallback, useContext, useRef, useState } from "react";
 
 import { DATA } from "@utils/dataMovieSlide";
 import classNames from "classnames/bind";
 import styles from "./BodyContentTitle.module.scss";
-import { FcNext, FcPrevious } from "react-icons/fc";
 import {
   handleClickNext,
   handleClickPrev,
 } from "@utils/generalFunction/GeneralFunction";
-import RenderHoverMovie from "../renderHoverMovie/RenderHoverMovie";
+import { ContextHover, IContextHover } from "src/providers/providerHover";
+import NavigationComponent from "@components/NavigationComponent/NavigationComponent";
 const cx = classNames.bind(styles);
 
-const BodyContentTitle = () => {
+const BodyContentTitle = React.memo(() => {
   const containerMovieRef = useRef<HTMLDivElement>(null);
   const [maxScroll, setMaxScroll] = useState(1);
   const [nextScroll, setNextScroll] = useState(0);
-  const [indexItem, setIndexItem] = useState(-1);
-  const [isHoverItem, setIsHover] = useState(false);
-  const saveTimeoutRef = useRef<number | null>(null);
+  const timeRef = useRef<number>(0);
+  //useContext
+  const context = useContext(ContextHover);
+  const {
+    setIsBoundingRect,
+    setItemIndex,
+    setCurrentItem,
+    setIsToggle,
+    isToggle,
+    currentItem,
+    isBoundingRect,
+    itemIndex,
+  } = context as IContextHover;
 
-  const handleMouseEnter = (
-    e: React.MouseEvent<HTMLDivElement, MouseEvent>,
-    idx: number
-  ) => {
-    if (saveTimeoutRef.current) {
-      clearTimeout(saveTimeoutRef.current);
-    }
+  const handleMouseEnter = useCallback(
+    (e: React.MouseEvent<HTMLDivElement, MouseEvent>, idx: number) => {
+      const target = e.currentTarget;
+      if (
+        timeRef.current &&
+        isBoundingRect &&
+        isToggle &&
+        currentItem &&
+        itemIndex
+      ) {
+        clearTimeout(timeRef.current);
+        setIsToggle(false);
+        setCurrentItem(undefined);
+        setIsBoundingRect(undefined);
+        setItemIndex(0);
+      }
+      timeRef.current = setTimeout(() => {
+        if (target) {
+          setIsToggle(true);
+          const { top, width, left } = target.getBoundingClientRect();
+          setIsBoundingRect({ top, width, left });
+          setItemIndex(idx);
+          setCurrentItem(DATA[idx]);
+        }
+      }, 700);
+    },
+    [
+      currentItem,
+      isToggle,
+      itemIndex,
+      isBoundingRect,
+      setIsBoundingRect,
+      setCurrentItem,
+      setIsToggle,
+      setItemIndex,
+    ]
+  );
 
-    saveTimeoutRef.current = setTimeout(() => {
-      setIsHover(true);
-      setIndexItem(idx);
-    }, 700);
-  };
-  const handleMouseLeave = () => {
-    if (saveTimeoutRef.current) {
-      clearTimeout(saveTimeoutRef.current);
-    }
+  const handleScrollPrev = useCallback(() => {
+    handleClickPrev({ containerMovieRef, nextScroll, setNextScroll, step: 3 });
+  }, [nextScroll]);
 
-    saveTimeoutRef.current = setTimeout(() => {
-      setIsHover(false);
-      setIndexItem(-1);
-    }, 700);
-  };
-
+  const handleScrollNext = useCallback(() => {
+    handleClickNext({
+      containerMovieRef,
+      nextScroll,
+      setNextScroll,
+      step: 3,
+      setMaxScroll,
+    });
+  }, [nextScroll]);
   return (
     <div className={cx("wrapper-body-content")}>
-      <div
-        className={cx("box-movies", { isHoverItem })}
-        ref={containerMovieRef}
-      >
+      <div className={cx("box-movies")} ref={containerMovieRef}>
         {DATA.map((movie, idx) => {
           return (
-            <>
-              {RenderHoverMovie({
-                handleMouseEnter,
-                handleMouseLeave,
-                idx,
-                indexItem,
-                isHoverItem,
-                movie,
-                isTrigger: true,
-              })}
-            </>
+            <div
+              className={cx("item-movie")}
+              key={idx}
+              onMouseEnter={(e) => handleMouseEnter(e, idx)}
+            >
+              <div className={cx("box-img")}>
+                <img
+                  src={movie.banner}
+                  alt={`movie-${idx}`}
+                  className={cx("img-movie")}
+                />
+              </div>
+            </div>
           );
         })}
       </div>
-      <>
-        {nextScroll !== 0 && (
-          <div className={cx("prev-movie")}>
-            <FcPrevious
-              color="red"
-              size={50}
-              className={cx("ic-prev")}
-              onClick={() =>
-                handleClickPrev({
-                  containerMovieRef,
-                  setNextScroll,
-                  nextScroll,
-                  step: 3,
-                })
-              }
-            />
-          </div>
-        )}
-      </>
-
-      <>
-        {nextScroll < maxScroll && (
-          <div className={cx("next-movie")}>
-            <FcNext
-              color="red"
-              size={50}
-              className={cx("ic-next")}
-              onClick={() =>
-                handleClickNext({
-                  containerMovieRef,
-                  setMaxScroll,
-                  setNextScroll,
-                  nextScroll,
-                  step: 3,
-                })
-              }
-            />
-          </div>
-        )}
-      </>
+      <NavigationComponent
+        handleScrollNext={handleScrollNext}
+        handleScrollPrev={handleScrollPrev}
+        maxScroll={maxScroll}
+        nextScroll={nextScroll}
+      />
     </div>
   );
-};
+});
 
 export default BodyContentTitle;

@@ -1,4 +1,5 @@
 import Header from "./Header/Header";
 import Footer from "./Footer/Footer";
 import Body from "./Body/Body";
-export { Header, Footer, Body };
+import Popup from "./Popup/Popup";
+export { Header, Footer, Body, Popup };

@@ -1,52 +1,86 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useContext, useRef, useState } from "react";
 import classNames from "classnames/bind";
 import styles from "./BodyContentTrending.module.scss";
 import { DATA } from "@utils/dataMovieSlide";
-import { FcNext, FcPrevious } from "react-icons/fc";
 import {
   handleClickNext,
   handleClickPrev,
 } from "@utils/generalFunction/GeneralFunction";
-import RenderHoverMovie from "../renderHoverMovie/RenderHoverMovie";
+import { ContextHover, IContextHover } from "src/providers/providerHover";
+import NavigationComponent from "@components/NavigationComponent/NavigationComponent";
 const cx = classNames.bind(styles);
-const BodyContentTrending = () => {
+const BodyContentTrending = React.memo(() => {
   const containerMovieRef = useRef<HTMLDivElement>(null);
   const [maxScroll, setMaxScroll] = useState(1);
   const [nextScroll, setNextScroll] = useState(0);
-  const [indexItem, setIndexItem] = useState(-1);
-  const [isHoverItem, setIsHoverItem] = useState(false);
-  const timeRef = useRef<number | null>(null);
+  const timeRef = useRef<number>(0);
 
-  useEffect(() => {
-    if (containerMovieRef.current) {
-      const target = containerMovieRef.current;
-      console.log(target);
-    }
-  }, []);
+  //contextcontext
+  const context = useContext(ContextHover);
+  const {
+    setIsBoundingRect,
+    setIsToggle,
+    setItemIndex,
+    setCurrentItem,
+    currentItem,
+    isBoundingRect,
+    itemIndex,
+    isToggle,
+  } = context as IContextHover;
 
-  const handleMouseEnter = (
-    e: React.MouseEvent<HTMLDivElement, MouseEvent>,
-    idx: number
-  ) => {
-    if (timeRef.current) {
-      clearTimeout(timeRef.current);
-    }
+  const handleMouseEnter = useCallback(
+    (e: React.MouseEvent<HTMLDivElement, MouseEvent>, idx: number) => {
+      console.log({ currentItem });
 
-    timeRef.current = setTimeout(() => {
-      setIsHoverItem(true);
-      setIndexItem(idx);
-    }, 500);
-  };
-  const handleMouseLeave = () => {
-    if (timeRef.current) {
-      clearTimeout(timeRef.current);
-    }
+      const target = e.currentTarget;
+      if (
+        timeRef.current &&
+        isBoundingRect &&
+        isToggle &&
+        currentItem &&
+        itemIndex
+      ) {
+        clearTimeout(timeRef.current);
+        setIsToggle(false);
+        setCurrentItem(undefined);
+        setIsBoundingRect(undefined);
+        setItemIndex(0);
+      }
+      timeRef.current = setTimeout(() => {
+        if (target) {
+          setIsToggle(true);
+          const { top, width, left } = target.getBoundingClientRect();
+          setIsBoundingRect({ top, width, left });
+          setItemIndex(idx);
+          setCurrentItem(DATA[idx]);
+        }
+      }, 700);
+    },
+    [
+      currentItem,
+      isBoundingRect,
+      isToggle,
+      itemIndex,
+      setCurrentItem,
+      setIsBoundingRect,
+      setIsToggle,
+      setItemIndex,
+    ]
+  );
 
-    timeRef.current = setTimeout(() => {
-      setIsHoverItem(false);
-      setIndexItem(-1);
-    }, 500);
-  };
+  const handleScrollPrev = useCallback(() => {
+    handleClickPrev({ containerMovieRef, nextScroll, setNextScroll, step: 3 });
+  }, [nextScroll]);
+
+  const handleScrollNext = useCallback(() => {
+    handleClickNext({
+      containerMovieRef,
+      nextScroll,
+      setNextScroll,
+      step: 3,
+      setMaxScroll,
+    });
+  }, [nextScroll]);
   return (
     <div className={cx("wrapper-content-trending")}>
       <div className={cx("items-trending")} ref={containerMovieRef}>
@@ -55,7 +89,6 @@ const BodyContentTrending = () => {
             className={cx("item")}
             key={idx}
             onMouseEnter={(e) => handleMouseEnter(e, idx)}
-            onMouseLeave={handleMouseLeave}
           >
             <div className={cx("box-rank")}>
               <img src={movie.rank} alt="rank" className={cx("rank")} />
@@ -63,56 +96,17 @@ const BodyContentTrending = () => {
             <div className={cx("box-img")}>
               <img src={movie.poster} alt="img" className={cx("img")} />
             </div>
-            {isHoverItem &&
-              indexItem === idx &&
-              RenderHoverMovie({
-                handleMouseEnter,
-                handleMouseLeave,
-                idx,
-                movie,
-                indexItem,
-                isHoverItem: isHoverItem,
-                className: cx(indexItem === idx ? "hover-movie-2" : ""),
-                isTrigger: false,
-              })}
           </div>
         ))}
       </div>
-      {nextScroll !== 0 && (
-        <div className={cx("prev-movie")}>
-          <FcPrevious
-            size={50}
-            className={cx("ic-prev")}
-            onClick={() =>
-              handleClickPrev({
-                containerMovieRef,
-                nextScroll,
-                setNextScroll,
-                step: 5.8,
-              })
-            }
-          />
-        </div>
-      )}
-      {nextScroll < maxScroll && (
-        <div className={cx("next-movie")}>
-          <FcNext
-            size={50}
-            className={cx("ic-next")}
-            onClick={() =>
-              handleClickNext({
-                containerMovieRef,
-                nextScroll,
-                setMaxScroll,
-                setNextScroll,
-                step: 5.8,
-              })
-            }
-          />
-        </div>
-      )}
+      <NavigationComponent
+        handleScrollNext={handleScrollNext}
+        handleScrollPrev={handleScrollPrev}
+        maxScroll={maxScroll}
+        nextScroll={nextScroll}
+      />
     </div>
   );
-};
+});
 
 export default BodyContentTrending;
