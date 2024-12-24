@@ -19,10 +19,10 @@ const MovieMetaDataShare = ({
         <span className={cx("sp-t16")}>{qualifier}</span>
       </div>
       <div className={cx("box-content-item")}>
-        <span>{release_year}</span>
+        <span className={cx("text")}>{release_year}</span>
       </div>
       <div className={cx("box-content-item")}>
-        <span>{total_episodes} tập</span>
+        <span className={cx("text")}>{total_episodes} tập</span>
       </div>
     </div>
   );

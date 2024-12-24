@@ -7,12 +7,14 @@ const cx = classNames.bind(styles);
 const BannerSlide = ({ logo, title, movie }: IMovieBannerSlide) => {
   return (
     <div className={cx("wrapper-body-slide-top")}>
-      <img
-        draggable="false"
-        src={movie?.poster}
-        alt="test-img"
-        className={cx("img-banner")}
-      />
+      <div className={cx("box-img")}>
+        <img
+          draggable="false"
+          src={movie?.poster}
+          alt={movie?.title}
+          className={cx("img-banner")}
+        />
+      </div>
       <div className={cx("wrapper-position")}>
         <div className={cx("wrapper-position-img")}>
           <img src={logo} alt="banner-2" className={cx("position-img")} />

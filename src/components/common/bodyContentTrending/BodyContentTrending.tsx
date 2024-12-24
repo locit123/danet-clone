@@ -90,11 +90,13 @@ const BodyContentTrending = React.memo(() => {
             key={idx}
             onMouseEnter={(e) => handleMouseEnter(e, idx)}
           >
-            <div className={cx("box-rank")}>
-              <img src={movie.rank} alt="rank" className={cx("rank")} />
-            </div>
-            <div className={cx("box-img")}>
-              <img src={movie.poster} alt="img" className={cx("img")} />
+            <div className={cx("item-trending")}>
+              <div className={cx("box-rank")}>
+                <img src={movie.rank} alt="rank" className={cx("rank")} />
+              </div>
+              <div className={cx("box-img")}>
+                <img src={movie.poster} alt="img" className={cx("img")} />
+              </div>
             </div>
           </div>
         ))}

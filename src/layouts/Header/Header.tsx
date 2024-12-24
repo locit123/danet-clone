@@ -5,6 +5,7 @@ import { FaSearch } from "react-icons/fa";
 import Notification from "@assets/notification.svg?react";
 import UserHeader from "@assets/user.svg?react";
 import logo from "@assets/images/logo-danet.png";
+import MenuIcon from "@assets/drawble.svg?react";
 const cx = classNames.bind(styles);
 
 const Header = () => {
@@ -60,6 +61,9 @@ const Header = () => {
     <header className={cx("wrapper-header")}>
       <div className={cx("header")}>
         <div className={cx("header-left")}>
+          <div className={cx("icon-menu")}>
+            <MenuIcon className={cx("icon")} />
+          </div>
           <div className={cx("parent-img")}>
             <img src={logo} alt="logo-header" className={cx("img-logo")} />
           </div>

@@ -94,40 +94,38 @@ const BodySlide = () => {
 
   return (
     <div className={cx("wrapper-body-slide")}>
-      <div>
+      <div className={cx("wrapper-banner-slide")}>
         <BannerSlide {...DATA_SLIDE[indexItem]} />
-        <div className={cx("wrapper-body-slide-bottom")}>
-          <div className={cx("slide-show-items")} ref={divContainerRef}>
-            {DATA_SLIDE.map((movie, index) => {
-              return (
-                <div
-                  key={movie.id}
-                  className={cx("slide-show-item")}
-                  onClick={(e) => handleClickIndex(e, index)}
-                >
-                  <img
-                    style={{
-                      border:
-                        index === indexItem
-                          ? "3px solid rgb(138, 191, 64)"
-                          : "",
-                    }}
-                    src={movie.horizontal_banner}
-                    alt={`movie${movie.id}`}
-                    className={cx("img-slide")}
-                    loading="lazy"
-                    draggable="false"
-                  />
-                </div>
-              );
-            })}
-          </div>
-          <div className={cx("prev-slide")} onClick={handleClickPrev}>
-            <FcPrevious color="red" size={50} className={cx("ic-prev")} />
-          </div>
-          <div className={cx("next-slide")} onClick={handleClickNext}>
-            <FcNext color="red" size={50} className={cx("ic-next")} />
-          </div>
+      </div>
+      <div className={cx("wrapper-body-slide-bottom")}>
+        <div className={cx("slide-show-items")} ref={divContainerRef}>
+          {DATA_SLIDE.map((movie, index) => {
+            return (
+              <div
+                key={movie.id}
+                className={cx("slide-show-item")}
+                onClick={(e) => handleClickIndex(e, index)}
+              >
+                <img
+                  style={{
+                    border:
+                      index === indexItem ? "3px solid rgb(138, 191, 64)" : "",
+                  }}
+                  src={movie.horizontal_banner}
+                  alt={`movie${movie.id}`}
+                  className={cx("img-slide")}
+                  loading="lazy"
+                  draggable="false"
+                />
+              </div>
+            );
+          })}
+        </div>
+        <div className={cx("prev-slide")} onClick={handleClickPrev}>
+          <FcPrevious color="red" size={50} className={cx("ic-prev")} />
+        </div>
+        <div className={cx("next-slide")} onClick={handleClickNext}>
+          <FcNext color="red" size={50} className={cx("ic-next")} />
         </div>
       </div>
     </div>

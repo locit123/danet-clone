@@ -61,7 +61,7 @@ const Popup = ({
           </div>
           <div className={cx("popup-footer")}>
             <div className={cx("title-p")}>
-              <p className={cx("p")}>{currentItem?.title}</p>
+              <h6 className={cx("p")}>{currentItem?.title}</h6>
             </div>
             {currentItem && <MovieMetaDataShare {...currentItem} />}
             <div className={cx("box-bt")}>

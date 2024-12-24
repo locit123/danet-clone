@@ -1,6 +1,6 @@
 .box-content {
   --gap-space: 15px;
-  margin: 16px 0;
+  margin: 0 0 8px 0px;
   display: flex;
   align-items: center;
   gap: var(--gap-space);
@@ -13,6 +13,8 @@
   padding-right: 7px;
   cursor: unset;
   .sp-hd {
+    font-size: 0.7rem;
+
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -32,12 +34,16 @@
     box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1);
   .sp-t16 {
     color: rgb(154, 202, 60);
+    font-size: 0.7rem;
   }
 }
 
+.text {
+  font-size: 0.7rem;
+}
 .box-content-item {
-  font-weight: 400;
-  font-size: 0.9375rem;
+  font-weight: 600;
+  font-size: 0.7rem;
   line-height: 1.43;
   color: var(--color-text);
   position: relative;
@@ -55,5 +61,20 @@
     ::after {
       content: none;
     }
+  }
+}
+
+/* Mobile styles */
+@media only screen and (max-width: 768px) {
+  .example {
+    font-size: 14px;
+    padding: 8px;
+  }
+}
+
+/* Tablet styles */
+@media only screen and (min-width: 769px) and (max-width: 1999px) {
+  .box-text-p {
+    display: none;
   }
 }

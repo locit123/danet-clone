@@ -23,7 +23,9 @@
 }
 
 .box-img-vertical {
-  aspect-ratio: 2 / 3;
+  position: relative;
+  min-width: 100%;
+  padding-bottom: 150%;
 }
 
 .img-vertical {
@@ -32,6 +34,7 @@
   object-fit: cover;
   border-radius: 4px;
   cursor: pointer;
+  position: absolute;
 }
 
 .box-title-vertical {
@@ -42,12 +45,13 @@
   display: -webkit-box;
   margin: 0px;
   font-weight: 600;
-  font-size: 0.9375rem;
+  font-size: 0.9rem;
   line-height: 1.43;
   color: var(--color-text);
   -webkit-line-clamp: 2;
   overflow: hidden;
   text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
 }
 
 .prev-movie {
@@ -98,4 +102,23 @@
 
 .icon-play {
   color: var(--color-green);
+}
+
+/* Mobile styles */
+@media only screen and (max-width: 720px) {
+  .item-movie-vertical {
+    flex: 0 0 calc(100vw / 2.5 - 10px);
+  }
+}
+
+@media only screen and (min-width: 720px) and (max-width: 1000px) {
+  .item-movie-vertical {
+    flex: 0 0 calc(100vw / 3.5 - 10px);
+  }
+}
+
+/* Tablet styles */
+@media only screen and (min-width: 769px) and (max-width: 1999px) {
+  .item-movie-vertical {
+  }
 }

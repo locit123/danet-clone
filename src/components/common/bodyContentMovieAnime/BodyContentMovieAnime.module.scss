@@ -1,7 +1,6 @@
 .wrapper-content-movie-anime {
   overflow: initial;
   position: relative;
-  height: 187.04px;
 }
 
 .items-movie-anime {
@@ -150,4 +149,23 @@
   background-image: linear-gradient(90deg, transparent, #121212);
   z-index: 10;
   cursor: pointer;
+}
+
+/* Mobile styles */
+@media only screen and (max-width: 720px) {
+  .item-anime {
+    flex: 0 0 calc(100vw / 2.5 - 10px);
+  }
+}
+
+@media only screen and (min-width: 720px) and (max-width: 1000px) {
+  .item-anime {
+    flex: 0 0 calc(100vw / 3.5 - 10px);
+  }
+}
+
+/* Tablet styles */
+@media only screen and (min-width: 769px) and (max-width: 1999px) {
+  .item-anime {
+  }
 }
