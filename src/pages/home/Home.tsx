@@ -1,4 +1,4 @@
-import { Body, Footer, Header, Popup } from "@layouts/index";
+import { Body, Footer, Header, Navbar, Popup } from "@layouts/index";
 import React, { useCallback, useContext, useEffect, useState } from "react";
 import classNames from "classnames/bind";
 import styles from "./Home.module.scss";
@@ -54,6 +54,7 @@ const Home = React.memo(() => {
           setIsToggle={setIsToggle}
           style={style}
         />
+        <Navbar />
       </div>
     </div>
   );

@@ -19,24 +19,14 @@ const NavigationComponent = ({
   return (
     <div>
       {nextScroll !== 0 && (
-        <div className={cx("prev-movie")}>
-          <FcPrevious
-            color="red"
-            size={50}
-            className={cx("ic-prev")}
-            onClick={handleScrollPrev}
-          />
+        <div className={cx("prev-movie")} onClick={handleScrollPrev}>
+          <FcPrevious color="red" size={50} className={cx("ic-prev")} />
         </div>
       )}
 
       {nextScroll < maxScroll && (
-        <div className={cx("next-movie")}>
-          <FcNext
-            color="red"
-            size={50}
-            className={cx("ic-next")}
-            onClick={handleScrollNext}
-          />
+        <div className={cx("next-movie")} onClick={handleScrollNext}>
+          <FcNext color="red" size={50} className={cx("ic-next")} />
         </div>
       )}
     </div>
