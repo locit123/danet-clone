@@ -7,6 +7,7 @@ import { ContextHover, IContextHover } from "src/providers/providerHover";
 const cx = classNames.bind(styles);
 const Home = React.memo(() => {
   const context = useContext(ContextHover);
+
   const {
     isBoundingRect,
     isToggle,

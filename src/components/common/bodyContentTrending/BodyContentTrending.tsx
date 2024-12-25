@@ -68,6 +68,12 @@ const BodyContentTrending = React.memo(() => {
     ]
   );
 
+  const handleMouseLeave = () => {
+    if (timeRef.current) {
+      clearTimeout(timeRef.current);
+    }
+  };
+
   const handleScrollPrev = useCallback(() => {
     handleClickPrev({ containerMovieRef, nextScroll, setNextScroll, step: 3 });
   }, [nextScroll]);
@@ -89,6 +95,7 @@ const BodyContentTrending = React.memo(() => {
             className={cx("item")}
             key={idx}
             onMouseEnter={(e) => handleMouseEnter(e, idx)}
+            onMouseLeave={handleMouseLeave}
           >
             <div className={cx("item-trending")}>
               <div className={cx("box-rank")}>

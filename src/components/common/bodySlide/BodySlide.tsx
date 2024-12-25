@@ -11,6 +11,9 @@ const BodySlide = () => {
   const divContainerRef = useRef<HTMLDivElement>(null);
   const [indexItem, setIndexItem] = useState(0);
   const visibleItemsCount = 6;
+  const isDragging = useRef(false);
+  const startX = useRef(0);
+  const scrollLeft = useRef(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -92,13 +95,51 @@ const BodySlide = () => {
     }
   };
 
+  const handleMouseDown = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    const container = divContainerRef.current;
+    if (!container) return;
+    isDragging.current = true;
+    startX.current = e.pageX - container.offsetLeft;
+    scrollLeft.current = container.scrollLeft;
+    container.style.cursor = "grabbing";
+  };
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    if (!isDragging.current || !divContainerRef.current) return;
+    const container = divContainerRef.current;
+    const x = e.pageX - container.offsetLeft;
+    const distance = x - startX.current;
+    container.scrollLeft = scrollLeft.current - distance;
+  };
+
+  const handleMouseUp = () => {
+    isDragging.current = false;
+    if (divContainerRef.current) {
+      divContainerRef.current.style.cursor = "grab";
+    }
+  };
+
+  const handleMouseLeave = () => {
+    isDragging.current = false;
+    if (divContainerRef.current) {
+      divContainerRef.current.style.cursor = "grab"; // Trả lại con trỏ khi chuột rời khỏi khu vực
+    }
+  };
+
   return (
     <div className={cx("wrapper-body-slide")}>
       <div className={cx("wrapper-banner-slide")}>
         <BannerSlide {...DATA_SLIDE[indexItem]} />
       </div>
       <div className={cx("wrapper-body-slide-bottom")}>
-        <div className={cx("slide-show-items")} ref={divContainerRef}>
+        <div
+          className={cx("slide-show-items")}
+          ref={divContainerRef}
+          onMouseDown={(e) => handleMouseDown(e)}
+          onMouseMove={(e) => handleMouseMove(e)}
+          onMouseUp={handleMouseUp}
+          onMouseLeave={handleMouseLeave}
+        >
           {DATA_SLIDE.map((movie, index) => {
             return (
               <div

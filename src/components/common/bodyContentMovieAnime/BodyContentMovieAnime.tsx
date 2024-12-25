@@ -67,6 +67,12 @@ const BodyContentMovieAnime = React.memo(() => {
     ]
   );
 
+  const handleMouseLeave = () => {
+    if (timeRef.current) {
+      clearTimeout(timeRef.current);
+    }
+  };
+
   const handleScrollPrev = useCallback(() => {
     handleClickPrev({ containerMovieRef, nextScroll, setNextScroll, step: 3 });
   }, [nextScroll]);
@@ -89,6 +95,7 @@ const BodyContentMovieAnime = React.memo(() => {
               className={cx("item-anime")}
               key={idx}
               onMouseEnter={(e) => handleMouseEnter(e, idx)}
+              onMouseLeave={handleMouseLeave}
             >
               <div className={cx("box-img-anime")}>
                 <img

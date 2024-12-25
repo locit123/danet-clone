@@ -112,6 +112,8 @@
   overflow: hidden;
   gap: 10px;
   scroll-behavior: smooth;
+  cursor: grab;
+  user-select: none;
   &::-webkit-scrollbar {
     display: none;
   }
@@ -120,7 +122,6 @@
 .slide-show-item {
   flex: 0 0 calc(100vw / 6 - 10px); /* Các item chiếm 1/6 chiều rộng của container, trừ khoảng cách */
   height: 100%;
-  cursor: pointer;
   aspect-ratio: 16 / 9;
 }
 

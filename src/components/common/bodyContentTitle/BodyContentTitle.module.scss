@@ -19,6 +19,9 @@
   transform: translate3d(0px, 0px, 0px);
   transition: transform 0.3s linear;
   gap: 10px;
+  cursor: grab;
+  user-select: none;
+  scroll-behavior: smooth;
 }
 .item-movie {
   flex: 0 0 calc(100vw / 4.5 - 10px);
@@ -27,7 +30,6 @@
 .box-img {
   position: relative;
   padding-bottom: 56.25%;
-  cursor: pointer;
 }
 
 .img-movie {
