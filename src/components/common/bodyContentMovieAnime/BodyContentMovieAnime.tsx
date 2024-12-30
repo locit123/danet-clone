@@ -9,12 +9,15 @@ import {
 } from "@utils/generalFunction/GeneralFunction";
 import { ContextHover, IContextHover } from "src/providers/providerHover";
 import NavigationComponent from "@components/NavigationComponent/NavigationComponent";
+import { IMovie } from "@models/Movie.models";
+import { useNavigate } from "react-router-dom";
 const cx = classNames.bind(styles);
 const BodyContentMovieAnime = React.memo(() => {
   const containerMovieRef = useRef<HTMLDivElement>(null);
   const [nextScroll, setNextScroll] = useState(0);
   const [maxScroll, setMaxScroll] = useState(1);
   const timeRef = useRef<number>();
+  const navigate = useNavigate();
   //contextcontext
   const context = useContext(ContextHover);
   const {
@@ -86,6 +89,10 @@ const BodyContentMovieAnime = React.memo(() => {
       setMaxScroll,
     });
   }, [nextScroll]);
+
+  const handleClickVideo = (movie: IMovie) => {
+    navigate(`detail-movie/${movie.slug}-${movie.uid}`, { state: movie });
+  };
   return (
     <div className={cx("wrapper-content-movie-anime")}>
       <div className={cx("items-movie-anime")} ref={containerMovieRef}>
@@ -97,7 +104,10 @@ const BodyContentMovieAnime = React.memo(() => {
               onMouseEnter={(e) => handleMouseEnter(e, idx)}
               onMouseLeave={handleMouseLeave}
             >
-              <div className={cx("box-img-anime")}>
+              <div
+                className={cx("box-img-anime")}
+                onClick={() => handleClickVideo(movie)}
+              >
                 <img
                   src={movie.banner}
                   alt={`movie-${idx}`}

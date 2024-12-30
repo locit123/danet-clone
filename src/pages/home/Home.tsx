@@ -3,10 +3,12 @@ import React, { useCallback, useContext, useEffect, useState } from "react";
 import classNames from "classnames/bind";
 import styles from "./Home.module.scss";
 import { ContextHover, IContextHover } from "src/providers/providerHover";
+import { useNavigate } from "react-router-dom";
 
 const cx = classNames.bind(styles);
 const Home = React.memo(() => {
   const context = useContext(ContextHover);
+  const navigate = useNavigate();
 
   const {
     isBoundingRect,
@@ -40,6 +42,11 @@ const Home = React.memo(() => {
     setIsBoundingRect(undefined);
     setItemIndex(0);
   }, [setCurrentItem, setIsBoundingRect, setItemIndex, setIsToggle]);
+  const handleClickVideo = () => {
+    navigate(`detail-movie/${currentItem?.slug}-${currentItem?.uid}`, {
+      state: currentItem,
+    });
+  };
   return (
     <div>
       <Header />
@@ -54,6 +61,7 @@ const Home = React.memo(() => {
           itemIndex={itemIndex}
           setIsToggle={setIsToggle}
           style={style}
+          handleClick={handleClickVideo}
         />
         <Navbar />
       </div>

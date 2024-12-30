@@ -4,4 +4,6 @@ import FreeMovie from "./freeMovie/FreeMovie";
 import FilmPackage from "./filmPackage/FilmPackage";
 import NotFound from "./notFound/NotFound";
 
-export { Television, Home, FreeMovie, FilmPackage, NotFound };
+import DetailMovie from "./detailMovie/DetailMovie";
+
+export { Television, Home, FreeMovie, FilmPackage, NotFound, DetailMovie };

@@ -5,9 +5,14 @@ import { DATA } from "@utils/dataMovieSlide";
 import {
   handleClickNext,
   handleClickPrev,
+  handleMouseDown,
+  handleMouseMove,
+  handleMouseUp,
 } from "@utils/generalFunction/GeneralFunction";
 import { ContextHover, IContextHover } from "src/providers/providerHover";
 import NavigationComponent from "@components/NavigationComponent/NavigationComponent";
+import { IMovie } from "@models/Movie.models";
+import { useNavigate } from "react-router-dom";
 const cx = classNames.bind(styles);
 const BodyContentTrending = React.memo(() => {
   const containerMovieRef = useRef<HTMLDivElement>(null);
@@ -15,6 +20,10 @@ const BodyContentTrending = React.memo(() => {
   const [nextScroll, setNextScroll] = useState(0);
   const timeRef = useRef<number>(0);
 
+  const isDragging = useRef(false);
+  const startX = useRef(0);
+  const [isDrag, setIsDrag] = useState(0);
+  const navigate = useNavigate();
   //contextcontext
   const context = useContext(ContextHover);
   const {
@@ -30,8 +39,7 @@ const BodyContentTrending = React.memo(() => {
 
   const handleMouseEnter = useCallback(
     (e: React.MouseEvent<HTMLDivElement, MouseEvent>, idx: number) => {
-      console.log({ currentItem });
-
+      if (isDragging.current) return;
       const target = e.currentTarget;
       if (
         timeRef.current &&
@@ -69,13 +77,21 @@ const BodyContentTrending = React.memo(() => {
   );
 
   const handleMouseLeave = () => {
+    if (containerMovieRef.current) {
+      containerMovieRef.current.style.cursor = "grab";
+    }
     if (timeRef.current) {
       clearTimeout(timeRef.current);
     }
   };
 
   const handleScrollPrev = useCallback(() => {
-    handleClickPrev({ containerMovieRef, nextScroll, setNextScroll, step: 3 });
+    handleClickPrev({
+      containerMovieRef,
+      nextScroll,
+      setNextScroll,
+      step: 3,
+    });
   }, [nextScroll]);
 
   const handleScrollNext = useCallback(() => {
@@ -87,9 +103,39 @@ const BodyContentTrending = React.memo(() => {
       setMaxScroll,
     });
   }, [nextScroll]);
+  //drag
+  const mouseDown = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    handleMouseDown({ containerMovieRef, e, isDragging, startX });
+  };
+
+  const mouseMove = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    handleMouseMove({
+      containerMovieRef,
+      e,
+      isDrag,
+      isDragging,
+      startX,
+      scrollTo: 10,
+      setIsDrag,
+    });
+  };
+
+  const mouseUp = () => {
+    handleMouseUp({ containerMovieRef, isDragging });
+  };
+
+  const handleClickVideo = (movie: IMovie) => {
+    navigate(`detail-movie/${movie.slug}-${movie.uid}`, { state: movie });
+  };
   return (
     <div className={cx("wrapper-content-trending")}>
-      <div className={cx("items-trending")} ref={containerMovieRef}>
+      <div
+        className={cx("items-trending")}
+        ref={containerMovieRef}
+        onMouseDown={(e) => mouseDown(e)}
+        onMouseMove={(e) => mouseMove(e)}
+        onMouseUp={mouseUp}
+      >
         {DATA.map((movie, idx) => (
           <div
             className={cx("item")}
@@ -99,10 +145,21 @@ const BodyContentTrending = React.memo(() => {
           >
             <div className={cx("item-trending")}>
               <div className={cx("box-rank")}>
-                <img src={movie.rank} alt="rank" className={cx("rank")} />
+                <img
+                  src={movie.rank}
+                  alt="rank"
+                  className={cx("rank")}
+                  draggable={false}
+                  onClick={() => handleClickVideo(movie)}
+                />
               </div>
               <div className={cx("box-img")}>
-                <img src={movie.poster} alt="img" className={cx("img")} />
+                <img
+                  src={movie.poster}
+                  alt="img"
+                  className={cx("img")}
+                  draggable={false}
+                />
               </div>
             </div>
           </div>

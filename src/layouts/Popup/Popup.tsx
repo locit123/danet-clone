@@ -19,6 +19,7 @@ interface IPopupProps {
     width: number | undefined;
   };
   currentItem: IMovie | undefined;
+  handleClick: () => void;
 }
 
 const Popup = ({
@@ -28,10 +29,15 @@ const Popup = ({
   itemIndex,
   isVisible,
   style,
+  handleClick,
   currentItem,
 }: IPopupProps) => {
   return (
-    <div onMouseEnter={() => setIsToggle(true)} onMouseLeave={handleMouseLeave}>
+    <div
+      onMouseEnter={() => setIsToggle(true)}
+      onMouseLeave={handleMouseLeave}
+      onClick={handleClick}
+    >
       {isToggle && (
         <div
           className={cx(

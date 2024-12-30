@@ -1,10 +1,4 @@
-import React, {
-  useCallback,
-  useContext,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import React, { useCallback, useContext, useRef, useState } from "react";
 
 import { DATA } from "@utils/dataMovieSlide";
 import classNames from "classnames/bind";
@@ -12,11 +6,15 @@ import styles from "./BodyContentTitle.module.scss";
 import {
   handleClickNext,
   handleClickPrev,
+  handleMouseDown,
+  handleMouseMove,
+  handleMouseUp,
 } from "@utils/generalFunction/GeneralFunction";
 import { ContextHover, IContextHover } from "src/providers/providerHover";
 import NavigationComponent from "@components/NavigationComponent/NavigationComponent";
+import { useNavigate } from "react-router-dom";
 import { IMovie } from "@models/Movie.models";
-import instanceAxios from "src/server/api";
+
 const cx = classNames.bind(styles);
 
 const BodyContentTitle = React.memo(() => {
@@ -25,18 +23,9 @@ const BodyContentTitle = React.memo(() => {
   const [nextScroll, setNextScroll] = useState(0);
   const timeRef = useRef<number>(0);
   const isDragging = useRef(false);
+  const [isDrag, setIsDrag] = useState(0);
   const startX = useRef(0);
-  const scrollLeft = useRef(0);
-
-  const [data, setData] = useState<IMovie[]>([]);
-
-  const getApi = async () => {
-    const res = await instanceAxios.get<IMovie[]>("http://localhost:3000/");
-    setData(res.data);
-  };
-  useEffect(() => {
-    getApi();
-  }, []);
+  const navigate = useNavigate();
 
   //useContext
   const context = useContext(ContextHover);
@@ -53,6 +42,7 @@ const BodyContentTitle = React.memo(() => {
 
   const handleMouseEnter = useCallback(
     (e: React.MouseEvent<HTMLDivElement, MouseEvent>, idx: number) => {
+      if (isDragging.current) return;
       const target = e.currentTarget;
       if (
         timeRef.current &&
@@ -90,15 +80,23 @@ const BodyContentTitle = React.memo(() => {
   );
 
   const handleMouseLeave = () => {
+    if (containerMovieRef.current) {
+      containerMovieRef.current.style.cursor = "grab";
+    }
+
     if (timeRef.current) {
       clearTimeout(timeRef.current);
     }
   };
 
   const handleScrollPrev = useCallback(() => {
-    handleClickPrev({ containerMovieRef, nextScroll, setNextScroll, step: 3 });
+    handleClickPrev({
+      containerMovieRef,
+      nextScroll,
+      setNextScroll,
+      step: 3,
+    });
   }, [nextScroll]);
-
   const handleScrollNext = useCallback(() => {
     handleClickNext({
       containerMovieRef,
@@ -109,46 +107,40 @@ const BodyContentTitle = React.memo(() => {
     });
   }, [nextScroll]);
 
-  //drag
   // Dragging logic
-  const handleMouseDown = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    const container = containerMovieRef.current;
-    if (!container) return;
-
-    isDragging.current = true;
-    startX.current = e.pageX - container.offsetLeft;
-    scrollLeft.current = container.scrollLeft;
-    container.style.cursor = "grabbing";
+  const mouseDown = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    handleMouseDown({ containerMovieRef, e, isDragging, startX });
   };
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    if (!isDragging.current || !containerMovieRef.current) return;
-
-    const container = containerMovieRef.current;
-    const x = e.pageX - container.offsetLeft;
-    const distance = x - startX.current;
-
-    container.scrollLeft = scrollLeft.current - distance;
+  const mouseMove = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    handleMouseMove({
+      containerMovieRef,
+      e,
+      isDrag,
+      isDragging,
+      scrollTo: 10,
+      setIsDrag,
+      startX,
+    });
   };
 
-  const handleMouseUp = () => {
-    isDragging.current = false;
-    if (containerMovieRef.current) {
-      containerMovieRef.current.style.cursor = "grab";
-    }
+  const mouseUp = () => {
+    handleMouseUp({ containerMovieRef, isDragging });
   };
-
+  const handleClickVideo = (movie: IMovie) => {
+    navigate(`detail-movie/${movie.slug}-${movie.uid}`, { state: movie });
+  };
   return (
     <div className={cx("wrapper-body-content")}>
       <div
         className={cx("box-movies")}
         ref={containerMovieRef}
         onMouseLeave={handleMouseLeave}
-        onMouseDown={handleMouseDown}
-        onMouseMove={handleMouseMove}
-        onMouseUp={handleMouseUp}
+        onMouseDown={mouseDown}
+        onMouseMove={mouseMove}
+        onMouseUp={mouseUp}
       >
-        {data.map((movie, idx) => {
+        {DATA.map((movie, idx) => {
           return (
             <div
               className={cx("item-movie")}
@@ -158,6 +150,7 @@ const BodyContentTitle = React.memo(() => {
             >
               <div className={cx("box-img")}>
                 <img
+                  onClick={() => handleClickVideo(movie)}
                   loading="lazy"
                   draggable={false}
                   src={movie.banner}

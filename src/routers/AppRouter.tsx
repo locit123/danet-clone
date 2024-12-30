@@ -1,4 +1,5 @@
 import {
+  DetailMovie,
   FilmPackage,
   FreeMovie,
   Home,
@@ -23,6 +24,10 @@ const AppRouter = () => {
     {
       path: "/television",
       element: <Television />,
+    },
+    {
+      path: "/detail-movie/:id",
+      element: <DetailMovie />,
     },
     {
       path: "*",

@@ -12,13 +12,15 @@
   gap: 10px;
   height: 100%;
   transition: transform 0.3s linear;
+  cursor: grab;
+  user-select: none;
+  scroll-behavior: smooth;
 }
 
 .item {
   flex: 0 0 calc(100vw / 3.5 - 10px);
   display: flex;
   height: 100%;
-  cursor: pointer;
 }
 
 .item-trending {

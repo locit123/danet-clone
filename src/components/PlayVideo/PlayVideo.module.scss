@@ -1,0 +1,132 @@
+.wrapper-play-video {
+  padding: 10px 25px;
+  z-index: 500;
+}
+
+.box-play-video-top {
+  display: flex;
+  color: var(--color-text);
+  gap: 10px;
+  align-items: center;
+}
+
+.box-range {
+  flex: 1;
+}
+
+.ip-range {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+  height: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.ip-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: var(--color-green);
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.ip-range::-webkit-slider-thumb:hover {
+  background-color: var(--color-green);
+  box-shadow: 0 0 0 8px rgba(0, 0, 0, 0.3);
+  width: 20px;
+  height: 20px;
+}
+
+.tooltip {
+  position: absolute;
+  top: -20px; /* Điều chỉnh vị trí tooltip */
+  background-color: var(--color-green);
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 12px;
+  white-space: nowrap;
+  pointer-events: none;
+  transform: translateX(-50%);
+  transition: opacity 0.2s;
+  opacity: 1;
+}
+
+.box-play-video-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.box-left {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.box-icon {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.5s linear;
+  color: var(--color-text);
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+}
+
+.ic {
+  width: 25.71px;
+  height: 25.71px;
+}
+
+.box-ip-sound {
+  display: flex;
+}
+
+.ip-sound {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 5px;
+  border-radius: 4px;
+  width: 70px;
+  background-color: var(--color-green);
+  cursor: pointer;
+}
+.ip-sound::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 15px;
+  height: 15px;
+  background-color: var(--color-green);
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.ip-sound::-webkit-slider-thumb:hover {
+  background-color: var(--color-green);
+  box-shadow: 0 0 0 8px rgba(0, 0, 0, 0.3);
+  width: 15px;
+  height: 15px;
+}
+
+.box-right {
+  display: flex;
+  gap: 10px;
+  color: var(--color-text);
+}
+
+.box-right-title {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  gap: 10px;
+  justify-content: center;
+}
